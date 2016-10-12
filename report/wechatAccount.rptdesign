@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.5.0.v201506092134 Build &lt;@BUILD@></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/chart_listing.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.chartlisting</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">scriptlib/webao.rptlibrary</property>
+            <property name="namespace">webao</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="wechat" id="38"
+ extends="webao.wechat"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="giftplat" id="39"
+ extends="webao.giftplat"/>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="wechat_account" id="40"
+ extends="webao.wechat_account"/>
+    </data-sets>
+    <styles>
+        <style name="report" id="33">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+            <property name="textAlign">center</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="189">
+            <property name="fontSize">16pt</property>
+            <property name="fontWeight">bold</property>
+            <text-property name="text">微信总账单</text-property>
+        </label>
+        <table id="131">
+            <property name="dataSet">wechat_account</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">quantity</property>
+                    <text-property name="displayName">quantity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["quantity"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">amount</property>
+                    <text-property name="displayName">amount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["amount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">refundAmount</property>
+                    <text-property name="displayName">refundAmount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["refundAmount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">refundBagAmount</property>
+                    <text-property name="displayName">refundBagAmount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["refundBagAmount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">feeAmount</property>
+                    <text-property name="displayName">feeAmount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feeAmount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">orderDate</property>
+                    <text-property name="displayName">orderDate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orderDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">type</property>
+                    <text-property name="displayName">type</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">orgCode</property>
+                    <text-property name="displayName">orgCode</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orgCode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">createTime</property>
+                    <text-property name="displayName">createTime</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["createTime"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="180"/>
+            <column id="181"/>
+            <column id="182"/>
+            <column id="183"/>
+            <column id="184"/>
+            <column id="185"/>
+            <header>
+                <row id="132">
+                    <cell id="133">
+                        <label id="134">
+                            <text-property name="text">总数量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="135">
+                        <label id="136">
+                            <text-property name="text">总金额</text-property>
+                        </label>
+                    </cell>
+                    <cell id="137">
+                        <label id="138">
+                            <text-property name="text">退款总金额</text-property>
+                        </label>
+                    </cell>
+                    <cell id="139">
+                        <label id="140">
+                            <text-property name="text">红包退款总金额</text-property>
+                        </label>
+                    </cell>
+                    <cell id="141">
+                        <label id="142">
+                            <text-property name="text">总手续费</text-property>
+                        </label>
+                    </cell>
+                    <cell id="143">
+                        <label id="144">
+                            <text-property name="text">交易日期</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="151">
+                    <cell id="152">
+                        <data id="153">
+                            <property name="resultSetColumn">quantity</property>
+                        </data>
+                    </cell>
+                    <cell id="154">
+                        <data id="155">
+                            <property name="resultSetColumn">amount</property>
+                        </data>
+                    </cell>
+                    <cell id="156">
+                        <data id="157">
+                            <property name="resultSetColumn">refundAmount</property>
+                        </data>
+                    </cell>
+                    <cell id="158">
+                        <data id="159">
+                            <property name="resultSetColumn">refundBagAmount</property>
+                        </data>
+                    </cell>
+                    <cell id="160">
+                        <data id="161">
+                            <property name="resultSetColumn">feeAmount</property>
+                        </data>
+                    </cell>
+                    <cell id="162">
+                        <data id="163">
+                            <property name="resultSetColumn">orderDate</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="170">
+                    <cell id="171"/>
+                    <cell id="172"/>
+                    <cell id="173"/>
+                    <cell id="174"/>
+                    <cell id="175"/>
+                    <cell id="176"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
